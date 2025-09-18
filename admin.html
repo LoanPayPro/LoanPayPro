@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Admin Dashboard</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <h1>Admin Dashboard</h1>
+  <section id="debtorList"></section>
+  <section id="loanManagement"></section>
+  <section id="savingsManagement"></section>
+  <section id="billingCollection"></section>
+  <section id="debtorList">
+  <h2>Debtor List</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Full Name</th><th>Contact</th><th>Email</th><th>Address</th>
+        <th>Status</th><th>Loan Balance</th><th>Savings</th>
+      </tr>
+    </thead>
+    <tbody id="debtorTableBody"></tbody>
+  </table>
+</section>
+
+<section id="loanCalculator">
+  <h2>Loan Calculator</h2>
+  <input type="number" id="principal" placeholder="Loan Amount" />
+  <input type="number" id="rate" placeholder="Annual Interest Rate (%)" />
+  <input type="number" id="term" placeholder="Term (months)" />
+  <input type="number" id="penaltyRate" placeholder="Penalty Rate (%)" />
+  <button onclick="calculateLoan()">Calculate</button>
+  <div id="loanResult"></div>
+</section>
+
+<section id="billingSchedule">
+  <h2>Billing Schedule</h2>
+  <select id="frequency">
+    <option value="daily">Daily</option>
+    <option value="weekly">Weekly</option>
+    <option value="monthly">Monthly</option>
+  </select>
+  <button onclick="generateSchedule()">Generate</button>
+  <ul id="scheduleList"></ul>
+</section>
+
+<section id="savingsManagement">
+  <h2>Savings & Dividend Tracker</h2>
+  <table>
+    <thead>
+      <tr><th>Name</th><th>Total Deposits</th><th>Total Withdrawals</th><th>Net Savings</th><th>Dividend</th></tr>
+    </thead>
+    <tbody id="savingsTableBody"></tbody>
+  </table>
+</section>
+
+<section id="loanApproval">
+  <h2>Loan Approval & Release</h2>
+  <div id="pendingLoans"></div>
+</section>
+
+<section id="riskDashboard">
+  <h2>Risk Dashboard</h2>
+  <table>
+    <thead><tr><th>Name</th><th>Credit Score</th><th>Risk Level</th></tr></thead>
+    <tbody id="riskTableBody"></tbody>
+  </table>
+</section>
+
+<section id="messagingSystem">
+  <h2>Send Reminder to Debtor</h2>
+  <input type="text" id="debtorEmail" placeholder="Debtor Email" />
+  <textarea id="messageContent" placeholder="Your message..."></textarea>
+  <button onclick="sendReminder()">Send</button>
+</section>
+
+<section id="analyticsDashboard">
+  <h2>System Overview</h2>
+  <div id="analyticsSummary"></div>
+</section>
+
+<section id="exportTools">
+  <h2>Export Debtor List</h2>
+  <button onclick="exportDebtors()">Download CSV</button>
+</section>
+
+<section id="auditLogs">
+  <h2>Audit Logs</h2>
+  <ul id="logList"></ul>
+</section>
+
+<section id="charts">
+  <h2>Loan Volume Chart</h2>
+  <div id="loanChart" style="width:100%;height:200px;background:#f0f0f0;"></div>
+</section>
+
+<section id="withdrawalApprovals">
+  <h2>Withdrawal Requests</h2>
+  <div id="withdrawalList"></div>
+</section>
+
+<section id="loanRestructure">
+  <h2>Restructure Loan</h2>
+  <input type="number" id="newTerm" placeholder="New Term (months)" />
+  <input type="number" id="newRate" placeholder="New Interest Rate (%)" />
+  <button onclick="restructureLoan()">Apply Changes</button>
+  <div id="restructureResult"></div>
+</section>
+
+<section id="documentManager">
+  <h2>Uploaded Documents</h2>
+  <ul id="docList"></ul>
+</section>
+
+<div id="notificationBadge">
+  🔔 Notifications <span id="unreadCount" style="color:red;"></span>
+</div>
+
+<section id="userCreation">
+  <h2>Create New User</h2>
+  <input type="text" id="newUsername" placeholder="Username" />
+  <input type="password" id="newPassword" placeholder="Password" />
+  <select id="newRole">
+    <option value="admin">Admin</option>
+    <option value="debtor">Debtor</option>
+  </select>
+  <button onclick="createUser()">Create</button>
+</section>
+
+<section id="delinquencyAlerts">
+  <h2>Delinquent Loans</h2>
+  <ul id="delinquentList"></ul>
+</section>
+
+<section id="analyticsFilters">
+  <h2>Filter Analytics</h2>
+  <input type="month" id="filterMonth" />
+  <select id="filterStatus">
+    <option value="all">All</option>
+    <option value="active">Active</option>
+    <option value="suspended">Suspended</option>
+  </select>
+  <button onclick="applyFilters()">Apply</button>
+  <div id="filteredResults"></div>
+</section>
+
+<section id="loanArchive">
+  <h2>Archived Loans</h2>
+  <ul id="archivedLoans"></ul>
+</section>
+
+<section id="dashboardWidgets">
+  <h2>Dashboard Overview</h2>
+  <div id="kpiWidgets"></div>
+</section>
+
+<section id="broadcastCenter">
+  <h2>Broadcast Announcement</h2>
+  <textarea id="broadcastMessage" placeholder="Type your message..."></textarea>
+  <button onclick="sendBroadcast()">Send</button>
+</section>
+
+<section id="loanTags">
+  <h2>Tag & Filter Loans</h2>
+  <input type="text" id="loanTagInput" placeholder="Enter tag (e.g. urgent, payroll)" />
+  <button onclick="applyTag()">Tag Selected Loan</button>
+  <select id="tagFilter" onchange="filterByTag(this.value)">
+    <option value="">All Tags</option>
+    <option value="urgent">Urgent</option>
+    <option value="payroll">Payroll</option>
+  </select>
+  <ul id="taggedLoans"></ul>
+</section>
+
+<section id="filteredExport">
+  <h2>Export Filtered Loans</h2>
+  <select id="exportTag">
+    <option value="">All</option>
+    <option value="urgent">Urgent</option>
+    <option value="payroll">Payroll</option>
+  </select>
+  <button onclick="exportFilteredLoans()">Export CSV</button>
+</section>
+
+<section id="reportGenerator">
+  <h2>Generate Report</h2>
+  <select id="reportPeriod">
+    <option value="monthly">Monthly</option>
+    <option value="quarterly">Quarterly</option>
+  </select>
+  <button onclick="generateReport()">Generate</button>
+  <div id="reportOutput"></div>
+</section>
+
+<section id="loanStatusEditor">
+  <h2>Edit Loan Status</h2>
+  <select id="loanSelector"></select>
+  <select id="statusSelector">
+    <option value="Pending">Pending</option>
+    <option value="Released">Released</option>
+    <option value="Overdue">Overdue</option>
+    <option value="Fully Paid">Fully Paid</option>
+  </select>
+  <button onclick="updateLoanStatus()">Update Status</button>
+  <div id="statusUpdateMsg"></div>
+</section>
+
+<div class="grid-2">
+  <div class="card">
+    <h2>Loan Status Editor</h2>
+    <select id="loanSelector"></select>
+    <select id="statusSelector">
+      <option value="Pending">Pending</option>
+      <option value="Released">Released</option>
+      <option value="Overdue">Overdue</option>
+      <option value="Fully Paid">Fully Paid</option>
+    </select>
+    <button onclick="updateLoanStatus()">Update Status</button>
+    <p id="statusUpdateMsg"></p>
+  </div>
+
+  <div class="card">
+    <h2>Broadcast Announcement</h2>
+    <textarea id="broadcastMessage" placeholder="Type your message..."></textarea>
+    <button onclick="sendBroadcast()">Send</button>
+  </div>
+</div>
+
+<button onclick="toggleTheme()">🌓 Toggle Theme</button>
+
+  <script src="js/admin.js"></script>
+</body>
+</html>

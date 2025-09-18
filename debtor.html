@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Debtor Dashboard</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <h1>Welcome, Debtor</h1>
+  <section id="loanBalance"></section>
+  <section id="savings"></section>
+  <section id="reminders"></section>
+  <section id="loanRequestForm"></section>
+  <section id="loanRequestForm">
+  <h2>Request a Loan</h2>
+  <form id="loanForm">
+    <input type="number" id="loanAmount" placeholder="Amount" required />
+    <select id="loanTerm">
+      <option value="6">6 months</option>
+      <option value="12">12 months</option>
+    </select>
+    <button type="submit">Submit Request</button>
+  </form>
+</section>
+
+<section id="loanStatus">
+  <h2>Your Loan Status</h2>
+  <div id="loanDetails"></div>
+</section>
+
+<section id="reminders">
+  <h2>Reminders</h2>
+  <div id="dueReminder"></div>
+</section>
+
+<section id="paymentHistory">
+  <h2>Payment History</h2>
+  <ul id="paymentList"></ul>
+</section>
+
+<section id="loanCalculator">
+  <h2>Estimate Your Loan</h2>
+  <input type="number" id="loanAmount" placeholder="Amount" />
+  <input type="number" id="interestRate" placeholder="Interest (%)" />
+  <input type="number" id="termMonths" placeholder="Term (months)" />
+  <button onclick="estimateLoan()">Calculate</button>
+  <div id="loanEstimateResult"></div>
+</section>
+
+<section id="documentUpload">
+  <h2>Upload Supporting Documents</h2>
+  <input type="file" id="docFile" />
+  <button onclick="uploadDocument()">Upload</button>
+  <div id="uploadStatus"></div>
+</section>
+
+<section id="transactionHistory">
+  <h2>Transaction History</h2>
+  <ul id="transactionList"></ul>
+</section>
+
+<section id="withdrawalRequest">
+  <h2>Request Savings Withdrawal</h2>
+  <input type="number" id="withdrawAmount" placeholder="Amount to withdraw" />
+  <button onclick="submitWithdrawal()">Submit Request</button>
+  <div id="withdrawalStatus"></div>
+</section>
+
+<section id="profileEditor">
+  <h2>Edit Profile</h2>
+  <input type="text" id="debtorName" placeholder="Full Name" />
+  <input type="email" id="debtorEmail" placeholder="Email" />
+  <input type="text" id="debtorContact" placeholder="Contact Number" />
+  <button onclick="saveProfile()">Save</button>
+</section>
+
+<section id="savingsGoal">
+  <h2>Your Savings Goal</h2>
+  <input type="number" id="goalAmount" placeholder="Target Amount" />
+  <button onclick="setGoal()">Set Goal</button>
+  <div id="goalProgress"></div>
+</section>
+
+<section id="amortizationSchedule">
+  <h2>Your Amortization Schedule</h2>
+  <table>
+    <thead><tr><th>Due Date</th><th>Amount</th><th>Status</th></tr></thead>
+    <tbody id="scheduleBody"></tbody>
+  </table>
+</section>
+
+<section id="paymentUpload">
+  <h2>Upload Payment Confirmation</h2>
+  <input type="file" id="paymentFile" />
+  <button onclick="uploadPayment()">Upload</button>
+  <div id="paymentStatus"></div>
+</section>
+
+<section id="loanTimeline">
+  <h2>Loan Status Timeline</h2>
+  <ul id="timelineSteps"></ul>
+</section>
+
+<section id="broadcasts">
+  <h2>Announcements</h2>
+  <ul id="broadcastList"></ul>
+</section>
+
+<section id="onboardingChecklist">
+  <h2>Getting Started</h2>
+  <ul id="checklistItems"></ul>
+</section>
+
+<section id="savingsHistory">
+  <h2>Savings History</h2>
+  <ul id="savingsList"></ul>
+</section>
+
+<section id="summaryCard">
+  <h2>Account Summary</h2>
+  <div id="summaryBox" style="border:1px solid #ccc;padding:1rem;"></div>
+</section>
+
+<section id="themeSwitcher">
+  <h2>Theme</h2>
+  <button onclick="toggleTheme()">Switch Theme</button>
+</section>
+
+<section id="paymentMethod">
+  <h2>Select Payment Method</h2>
+  <select id="methodSelector" onchange="savePaymentMethod(this.value)">
+    <option value="gcash">GCash</option>
+    <option value="paymaya">PayMaya</option>
+    <option value="bank">Bank Transfer</option>
+    <option value="cash">Cash (In-Person)</option>
+  </select>
+  <div id="selectedMethod"></div>
+</section>
+
+  <script src="js/debtor.js"></script>
+</body>
+</html>
